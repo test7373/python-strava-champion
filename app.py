@@ -5,15 +5,15 @@ from datetime import datetime
 import pandas as pd
 
 # Configurações da API do Strava
-ACCESS_TOKEN = ''  # Substitua pelo seu token de acesso
-CLUB_ID = ''  # Substitua pelo seu ID do clube
+ACCESS_TOKEN = '157eac90f6658e4708fa38b937457af14576387a'  # Substitua pelo seu token de acesso
+CLUB_ID = '1304613'  # Substitua pelo seu ID do clube
 
 # Endpoint da API do Strava
 API_URL = f'https://www.strava.com/api/v3/clubs/{CLUB_ID}/activities'
 HEADERS = {'Authorization': f'Bearer {ACCESS_TOKEN}'}
 
 # Busca atividades do clube
-response = requests.get(API_URL, headers=HEADERS, params={'per_page': 127})
+response = requests.get(API_URL, headers=HEADERS, params={'per_page': 136})
 activities = response.json()
 
 # Verifica se a resposta é uma lista de atividades

@@ -1,18 +1,18 @@
-firstname,lastname,total_hours,total_kilometers,activity_count,score
-Giovanna,K.,7.88,38.87,15,46.75
-Nataniel,P.,4.34,38.58,14,42.92
-Deyse,S.,6.35,20.05,15,26.4
-Cleriston,C.,6.16,19.15,17,25.31
-Filipe,O.,3.48,21.01,5,24.49
-Ana Paula,G.,2.5,20.98,5,23.48
-Lucas,M.,7.2,14.38,5,21.58
-renato,K.,2.68,13.77,6,16.45
-Ana Clara,N.,4.35,9.78,12,14.13
-Natanael,F.,6.93,4.46,8,11.39
-Carlos,G.,1.46,9.63,7,11.09
-Flávio,D.,1.52,8.13,5,9.65
-Filipi,Z.,4.45,3.41,3,7.86
-Anna Kelly,G.,0.52,5.27,3,5.79
-Everardo,O.,1.89,2.07,3,3.96
-Vaney,M.,3.52,0.0,2,3.52
-Claudia,V.,1.22,1.28,2,2.5
+firstname,lastname,total_kilometers,activity_count,total_hours,score
+Cleriston,C.,45.8,18,7 horas e 30 minutos,53.31
+Giovanna,K.,41.27,18,9 horas e 55 minutos,51.19
+Nataniel,P.,38.58,14,4 horas e 20 minutos,42.92
+Deyse,S.,23.4,17,7 horas e 8 minutos,30.54
+Filipe,O.,21.01,5,3 horas e 28 minutos,24.49
+Ana Paula,G.,20.98,5,2 horas e 30 minutos,23.48
+Lucas,M.,14.38,5,7 horas e 12 minutos,21.58
+Ana Clara,N.,11.01,15,5 horas e 45 minutos,16.77
+renato,K.,13.77,6,2 horas e 40 minutos,16.45
+Natanael,F.,4.46,8,6 horas e 56 minutos,11.39
+Carlos,G.,9.63,7,1 horas e 27 minutos,11.09
+Flávio,D.,8.13,5,1 horas e 30 minutos,9.65
+Everardo,O.,6.28,4,2 horas e 51 minutos,9.14
+Filipi,Z.,3.41,3,4 horas e 26 minutos,7.86
+Anna Kelly,G.,5.27,3,0 horas e 31 minutos,5.79
+Vaney,M.,0.0,2,3 horas e 31 minutos,3.52
+Claudia,V.,1.28,2,1 horas e 13 minutos,2.5
