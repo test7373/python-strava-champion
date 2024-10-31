@@ -53,3 +53,14 @@ jobs:
             unique_activities.csv
             participant_scores.csv
             participant_scores_with_details.csv
+      # Adicionar e commitar os arquivos CSV gerados no repositório
+      - name: Commit and push CSV files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add *.csv
+          git commit -m "Add updated CSV files from workflow run"
+          git push
+        env:
+          # Necessário para autenticar o push
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}      
