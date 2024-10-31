@@ -18,7 +18,7 @@ activities = response.json()
 
 # Verifica se a resposta é uma lista de atividades
 if not isinstance(activities, list):
-    print('token{ACCESS_TOKEN}')
+    print(f'Token: {ACCESS_TOKEN}')
     print("Erro: resposta inesperada da API do Strava")
     activities = []
 
