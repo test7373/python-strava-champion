@@ -1,0 +1,55 @@
+name: Run Strava Scripts
+
+on:
+  workflow_dispatch:  
+  schedule:
+    - cron: '0 0 * * *'  
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do repositório
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      # Configura o Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Define a versão do Python
+
+      # Instala as dependências
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests
+
+      # Executa o script para buscar e salvar atividades do clube
+      - name: Run script to fetch and save club activities
+        env:
+          ACCESS_TOKEN: ${{ secrets.STRAVA_ACCESS_TOKEN }}  # Token armazenado como um segredo do repositório
+          CLUB_ID: ${{ secrets.STRAVA_CLUB_ID }}            # ID do clube armazenado como segredo
+        run: |
+          python app.py
+
+      # Executa o script para calcular pontuação
+      - name: Run script to calculate scores
+        run: |
+          python score.py
+
+      # Executa o script para gerar pontuação com detalhes
+      - name: Run script to calculate scores with details
+        run: |
+          python score_details.py
+
+      # Salva os arquivos CSV gerados como artefatos
+      - name: Upload CSV artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: csv-files
+          path: |
+            unique_activities.csv
+            participant_scores.csv
+            participant_scores_with_details.csv
