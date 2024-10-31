@@ -57,6 +57,7 @@ jobs:
             unique_activities.csv
             participant_scores.csv
             participant_scores_with_details.csv
+            strava_tokens.csv
       # Adicionar e commitar os arquivos CSV gerados no repositório
       - name: Commit and push CSV files
         run: |
