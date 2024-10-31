@@ -3,9 +3,9 @@ name: Run Strava Scripts
 on:
   workflow_dispatch:  
   schedule:
-    - cron: '0 2 * * *'     
-    - cron: '0 16 * * *'    
-    - cron: '0 1 * * *' 
+    - cron: '0 3 * * *'     
+    - cron: '0 18 * * *'    
+    - cron: '0 2 * * *' 
 
 jobs:
   run-scripts:
