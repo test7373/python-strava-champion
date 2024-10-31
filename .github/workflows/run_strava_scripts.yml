@@ -30,8 +30,10 @@ jobs:
       # Executa o script para buscar e salvar atividades do clube
       - name: Rodar o script para buscar os dados no strava 
         env:
-          ACCESS_TOKEN: ${{ secrets.STRAVA_ACCESS_TOKEN }}  # Token armazenado como um segredo do repositório
-          CLUB_ID: ${{ secrets.STRAVA_CLUB_ID }}            # ID do clube armazenado como segredo
+          ACCESS_TOKEN: ${{ secrets.STRAVA_ACCESS_TOKEN }}
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}            
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}            
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}            
         run: |
           python app.py
 

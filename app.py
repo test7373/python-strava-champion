@@ -5,7 +5,27 @@ from datetime import datetime
 import pandas as pd
 
 # Configurações da API do Strava
-ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")  # Substitua pelo seu token de acesso
+CLIENT_ID = os.getenv("STRAVA_CLIENT_ID")
+CLIENT_SECRET = os.getenv("STRAVA_CLIENT_SECRET")
+REFRESH_TOKEN = os.getenv("STRAVA_REFRESH_TOKEN")
+CLUB_ID = '1304613'  # Substitua pelo seu ID do clube
+
+# Função para buscar o access token automaticamente
+def get_access_token():
+    token_url = "https://www.strava.com/oauth/token"
+    payload = {
+        'client_id': CLIENT_ID,
+        'client_secret': CLIENT_SECRET,
+        'refresh_token': REFRESH_TOKEN,
+        'grant_type': 'refresh_token'
+    }
+    response = requests.post(token_url, data=payload)
+    response_data = response.json()
+    return response_data.get('access_token')
+
+# Obtém o access token
+ACCESS_TOKEN = get_access_token()
+# Substitua pelo seu token de acesso
 CLUB_ID = '1304613'  # Substitua pelo seu ID do clube
 
 # Endpoint da API do Strava
