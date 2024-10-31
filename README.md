@@ -36,3 +36,9 @@ Instale as dependências com:
 
 ```bash
 pip install pandas requests
+```
+Configure a variável de ambiente local com:
+
+```bash
+export ACCESS_TOKEN=seutoken
+```

@@ -5,7 +5,7 @@ from datetime import datetime
 import pandas as pd
 
 # Configurações da API do Strava
-ACCESS_TOKEN = '157eac90f6658e4708fa38b937457af14576387a'  # Substitua pelo seu token de acesso
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")  # Substitua pelo seu token de acesso
 CLUB_ID = '1304613'  # Substitua pelo seu ID do clube
 
 # Endpoint da API do Strava
