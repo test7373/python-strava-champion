@@ -11,11 +11,11 @@ jobs:
 
     steps:
       # Checkout do repositório
-      - name: Check out the repository
+      - name: Check out do repository
         uses: actions/checkout@v3
 
       # Configura o Python
-      - name: Set up Python
+      - name: Configurar o Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'  # Define a versão do Python
@@ -27,7 +27,7 @@ jobs:
           pip install pandas requests
 
       # Executa o script para buscar e salvar atividades do clube
-      - name: Run script to fetch and save club activities
+      - name: Rodar o script para buscar os dados no strava 
         env:
           ACCESS_TOKEN: ${{ secrets.STRAVA_ACCESS_TOKEN }}  # Token armazenado como um segredo do repositório
           CLUB_ID: ${{ secrets.STRAVA_CLUB_ID }}            # ID do clube armazenado como segredo
@@ -35,12 +35,12 @@ jobs:
           python app.py
 
       # Executa o script para calcular pontuação
-      - name: Run script to calculate scores
+      - name: Rodar o script para calcular o score básico
         run: |
           python score.py
 
       # Executa o script para gerar pontuação com detalhes
-      - name: Run script to calculate scores with details
+      - name: Rodar o script para calcular o score mais detalhado
         run: |
           python score_details.py
 
@@ -59,7 +59,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add *.csv
-          git commit -m "Add updated CSV files from workflow run"
+          git commit -m "Arquivos atualizados automáticamente pelo github actions"
           git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
