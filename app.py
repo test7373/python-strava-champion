@@ -1,7 +1,7 @@
 import requests
 import csv
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 import pandas as pd
 
 # Configurações da API do Strava
@@ -73,7 +73,12 @@ if ACCESS_TOKEN:
 
     # Salva as atividades em um CSV com a data atual, adicionando ao arquivo se ele já existir
     csv_file_1 = 'club_activities.csv'
-    current_date = datetime.now().strftime('%Y-%m-%d')
+    
+    data_hora_atual = datetime.now()
+    # por causa do horário do servidor
+    data_hora_ajustada = data_hora_atual - timedelta(hours=3, minutes=10)
+    
+    current_date = data_hora_ajustada.date()
 
     file_exists = os.path.isfile(csv_file_1)
 
