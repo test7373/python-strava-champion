@@ -1,0 +1,55 @@
+name: Verificar atividades inválidas
+
+on:
+  workflow_dispatch:  
+  schedule:
+    - cron: '0 3 * * *'     
+    - cron: '0 18 * * *'
+    - cron: '0 21 * * *'    
+    - cron: '0 2 * * *'
+    - cron: '0 12 * * *'
+    - cron: '0 13 * * *'  
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do repositório
+      - name: Check out do repository
+        uses: actions/checkout@v3
+
+      # Configura o Python
+      - name: Configurar o Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Define a versão do Python
+
+      # Instala as dependências
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests
+
+      # Executa o script para gerar pontuação com detalhes
+      - name: Rodar o script para calcular o score mais detalhado
+        run: |
+          python verify_activity.py
+
+      # Salva os arquivos CSV gerados como artefatos
+      - name: Upload CSV artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: csv-files
+          path: |
+            invalid_activities.csv
+      # Adicionar e commitar os arquivos CSV gerados no repositório
+      - name: Commit and push CSV files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add *.csv
+          git commit -m "(verificar atividades) Arquivos atualizados automáticamente pelo github actions"
+          git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
