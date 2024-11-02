@@ -3,12 +3,7 @@ name: Verificar atividades inválidas
 on:
   workflow_dispatch:  
   schedule:
-    - cron: '0 3 * * *'     
-    - cron: '0 18 * * *'
-    - cron: '0 21 * * *'    
-    - cron: '0 2 * * *'
-    - cron: '0 12 * * *'
-    - cron: '0 13 * * *'  
+    - cron: '0 3 * * *'  
 
 jobs:
   run-scripts:
