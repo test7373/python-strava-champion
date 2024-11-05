@@ -1,44 +1,71 @@
-# Strava Club Activity Data Processor
+# Run Strava Scripts
 
-Este projeto contém scripts em Python que acessam a API do Strava para buscar atividades de um clube, processar esses dados e gerar pontuações para cada participante. O projeto salva os resultados em diferentes arquivos CSV conforme descrito abaixo.
+## Descrição
+Este repositório contém scripts para interagir com a API do Strava, coletando e processando dados de atividades de um clube. Utilizamos o GitHub Actions para automatizar a execução dos scripts em intervalos regulares e salvar os resultados como artefatos. Este projeto é útil para criar relatórios detalhados sobre as atividades do clube e gerar pontuações para os participantes.
 
-## Arquivos
+## Funcionalidades
+- Coleta de atividades do clube utilizando a API do Strava.
+- Atualização automática de dados através do GitHub Actions a cada hora.
+- Geração de relatórios detalhados sobre as atividades e pontuações dos participantes.
+- Salvamento automático dos arquivos gerados no repositório.
 
-- **unique_activities.csv**: Este arquivo contém as 200 atividades mais recentes de um clube Strava, incluindo a data em que foram recuperadas. Ele é o primeiro passo do processamento e armazena dados brutos.
+## GitHub Actions
+O workflow do GitHub Actions definido no projeto é responsável pela execução periódica dos scripts. Abaixo está uma descrição de cada etapa:
 
-- **participant_scores.csv**: Este arquivo contém a pontuação de cada participante, calculada a partir das atividades no `unique_activities.csv`. A pontuação é baseada no tempo em movimento e na distância percorrida.
+1. **Workflow Dispatch e Cron Job**
+   - O workflow pode ser iniciado manualmente ou é executado automaticamente a cada hora, conforme definido no cron (`0 * * * *`).
 
-- **participant_scores_with_details.csv**: Este arquivo inclui informações detalhadas sobre cada participante, incluindo a pontuação, o total de horas, quilômetros e a quantidade de atividades realizadas.
+2. **Checkout do Repositório**
+   - Faz o checkout do repositório para garantir que todos os arquivos estejam acessíveis.
 
-## Scripts
+3. **Configuração do Python**
+   - Configura o ambiente Python utilizando a versão `3.x`.
 
-### 1. Baixar e Salvar Atividades do Clube
-Este script app.py acessa a API do Strava e salva as atividades do clube no arquivo `unique_activities.csv` com a data de recuperação dos dados. Para usar este script, forneça um token de acesso válido e o ID do clube Strava.
+4. **Instalação de Dependências**
+   - Atualiza o `pip` e instala as dependências necessárias, incluindo `pandas` e `requests`.
 
-### 2. Calcular Pontuação de Participantes
-Este script score.py processa o arquivo `unique_activities.csv` e gera uma pontuação baseada em horas (1 ponto por hora) e distância (1 ponto por quilômetro) para cada participante, salvando o resultado no `participant_scores.csv`.
+5. **Execução dos Scripts**
+   - **Buscar Dados do Strava**: Executa o script `app.py` para buscar as atividades do clube utilizando o token de acesso do Strava.
+   - **Definir Data de Início da Competição**: Executa o script `start_competition.py` para definir o início da competição.
+   - **Calcular Pontuação Detalhada**: Executa o script `score_details.py` para calcular e gerar relatórios detalhados das pontuações dos participantes.
 
-### 3. Gerar Pontuação com Detalhes
-Este script score_details.py calcula a pontuação, total de horas, total de quilômetros e quantidade de atividades para cada participante e salva os dados em `participant_scores_with_details.csv`. A pontuação é arredondada para duas casas decimais e o arquivo é ordenado por pontuação.
+6. **Upload dos Arquivos Gerados**
+   - Os arquivos CSV gerados são salvos como artefatos no GitHub, incluindo detalhes das atividades e pontuações.
 
-## Exemplo de Uso
+7. **Commit e Push dos Arquivos CSV**
+   - Os arquivos CSV são adicionados, commitados e enviados para o repositório automaticamente, garantindo que os dados estejam sempre atualizados.
 
-1. Execute o script app.py para baixar as atividades do clube Strava e salve-as no `unique_activities.csv`.
-2. Em seguida, execute o script score.py de cálculo de pontuação para gerar o `participant_scores.csv`.
-3. Por fim, execute o script score_details.py para gerar o `participant_scores_with_details.csv`, que inclui pontuação, horas, quilômetros e contagem de atividades.
+## Configuração
+### Variáveis de Ambiente
+Para que o workflow funcione corretamente, é necessário configurar os seguintes segredos no repositório:
+- `STRAVA_CLIENT_ID`: ID do cliente do Strava.
+- `STRAVA_CLIENT_SECRET`: Segredo do cliente do Strava.
+- `STRAVA_REFRESH_TOKEN`: Token de atualização para obter novos tokens de acesso.
+- `GITHUB_TOKEN`: Token automático fornecido pelo GitHub para realizar commits no repositório.
 
-## Dependências
+## Como Utilizar
+1. Clone o repositório:
+   ```sh
+   git clone https://github.com/Strava-Amigos-com-Proposito/python-strava-champion.git
+   ```
+2. Configure as variáveis de ambiente no GitHub (Secrets).
+3. Ajuste os scripts conforme necessário.
+4. O GitHub Actions cuidará da execução periódica dos scripts e da atualização dos arquivos CSV no repositório.
 
-- `pandas`
-- `requests` (para acesso à API do Strava)
+## Scripts Disponíveis
+- **app.py**: Busca e salva as atividades do clube.
+- **start_competition.py**: Define a data de início da competição.
+- **score_details.py**: Gera pontuação detalhada dos participantes.
 
-Instale as dependências com:
+## Artefatos Gerados
+- `unique_activities.csv`: Atividades únicas coletadas do Strava.
+- `unique_activities_old.csv`: Atividades anteriores.
+- `participant_scores_with_details.csv`: Pontuação detalhada dos participantes.
+- `strava_tokens.csv`: Tokens do Strava utilizados.
 
-```bash
-pip install pandas requests
-```
-Configure a variável de ambiente local com:
+## Contribuição
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request para melhorias ou correções.
 
-```bash
-export ACCESS_TOKEN=seutoken
-```
+## Contato
+Para quaisquer dúvidas, entre em contato através do [LinkedIn](https://www.linkedin.com/in/natanielpaiva/).
+
