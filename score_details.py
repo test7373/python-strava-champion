@@ -11,7 +11,7 @@ def seconds_to_hours_minutes(seconds):
 
 # Função para determinar o fator de pontuação com base no tipo de atividade
 def get_score_factor(activity_type):
-    if activity_type in ["Walk", "Run"]:
+    if activity_type in ["Walk", "Run", "EBikeRide"]:
         return 2
     elif activity_type == "Ride":
         return 1
@@ -19,33 +19,36 @@ def get_score_factor(activity_type):
         return 1  # Caso não seja nenhum dos tipos especificados, utiliza 1 como padrão
 
 # Adicionando uma coluna de fator de pontuação ao DataFrame
-df["score_factor"] = df["type"].apply(get_score_factor)
+df["fator_pontuacao"] = df["type"].apply(get_score_factor)
 
 # Agrupar os dados por participante (firstname e lastname) e calcular as métricas
-participant_scores = (
+pontuacao_participantes = (
     df.groupby(["firstname", "lastname"])
     .agg(
-        total_seconds=("moving_time", "sum"),                                  # Somando moving_time em segundos
-        total_kilometers=("distance", lambda x: round(x.sum() / 1000, 2)),     # Convertendo distância para km e arredondando
-        activity_count=("moving_time", "count"),                               # Contando o número de atividades
-        total_score_factor=("score_factor", "sum"),                            # Somando os fatores de pontuação
-        kilometers_weight_1=("distance", lambda x: round(x[df["score_factor"] == 1].sum() / 1000, 2)),  # Somando quilômetros com peso 1
-        kilometers_weight_2=("distance", lambda x: round(x[df["score_factor"] == 2].sum() / 1000, 2))   # Somando quilômetros com peso 2
+        total_segundos=("moving_time", "sum"),                                  # Somando moving_time em segundos
+        total_quilometros=("distance", lambda x: round(x.sum() / 1000, 2)),       # Convertendo distância para km e arredondando
+        quantidade_atividades=("moving_time", "count"),                         # Contando o número de atividades
+        total_fator_pontuacao=("fator_pontuacao", "sum"),                       # Somando os fatores de pontuação
+        quilometros_peso_1=("distance", lambda x: round(x[df["fator_pontuacao"] == 1].sum() / 1000, 2)),  # Somando quilômetros com peso 1
+        quilometros_peso_2=("distance", lambda x: round(x[df["fator_pontuacao"] == 2].sum() / 1000, 2))   # Somando quilômetros com peso 2
     )
     .reset_index()
 )
 
 # Adicionando uma coluna de horas no formato desejado
-participant_scores["total_hours"] = participant_scores["total_seconds"].apply(seconds_to_hours_minutes)
+pontuacao_participantes["total_horas"] = pontuacao_participantes["total_segundos"].apply(seconds_to_hours_minutes)
 
 # Calcular a pontuação com base em horas, quilômetros e o fator de pontuação, arredondando para duas casas
-participant_scores["score"] = round((participant_scores["total_seconds"] / 3600 + participant_scores["total_kilometers"]) * participant_scores["total_score_factor"], 2)
+pontuacao_participantes["pontuacao"] = round((pontuacao_participantes["total_segundos"] / 3600 + pontuacao_participantes["total_quilometros"]) * pontuacao_participantes["total_fator_pontuacao"], 2)
+
+# Reorganizar as colunas para que a pontuação fique ao lado do nome
+colunas_ordenadas = ["firstname", "lastname", "pontuacao", "total_quilometros", "quilometros_peso_1", "quilometros_peso_2", "quantidade_atividades", "total_horas"]
+pontuacao_participantes = pontuacao_participantes[colunas_ordenadas]
 
 # Ordenar por pontuação em ordem decrescente
-participant_scores = participant_scores.sort_values(by="score", ascending=False)
+pontuacao_participantes = pontuacao_participantes.sort_values(by="pontuacao", ascending=False)
 
 # Salvar o resultado em um novo CSV
-participant_scores.drop(columns=["total_seconds", "total_score_factor"], inplace=True)  # Removendo colunas desnecessárias para simplificar o CSV
-participant_scores.to_csv("participant_scores_with_details.csv", index=False)
+pontuacao_participantes.to_csv("participant_scores_with_details.csv", index=False)
 
-print("Pontuação dos participantes com horas, quilômetros e quantidade de atividades salva em 'participant_scores_with_details.csv' com sucesso.")
+print("Pontuação dos participantes com horas, quilômetros e quantidade de atividades salva em 'pontuacao_participantes_com_detalhes.csv' com sucesso.")

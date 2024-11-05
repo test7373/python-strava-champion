@@ -1,16 +1,16 @@
-firstname,lastname,total_kilometers,activity_count,kilometers_weight_1,kilometers_weight_2,total_hours,score
-Lucas,M.,37.0,4,30.0,7.0,4 horas e 26 minutos,207.23
-Nataniel,P.,14.93,8,7.87,7.07,1 horas e 41 minutos,199.42
-Ana Paula,G.,12.2,3,10.2,2.0,2 horas e 7 minutos,57.32
-Deyse,S.,4.74,3,0.0,4.74,1 horas e 2 minutos,34.73
-Natanael,F.,5.0,3,0.0,5.0,2 horas e 26 minutos,29.77
-Carlos,G.,5.0,3,2.0,3.0,0 horas e 31 minutos,27.6
-Filipe,O.,10.1,2,10.1,0.0,1 horas e 32 minutos,23.29
-Ana Clara,N.,5.2,2,2.1,3.1,0 horas e 33 minutos,17.29
-Everardo,O.,1.04,3,0.0,1.04,2 horas e 33 minutos,14.39
-renato,K.,2.05,2,0.0,2.05,0 horas e 28 minutos,10.07
-marconecosta0872@gmail.com,C.,4.08,1,0.0,4.08,0 horas e 22 minutos,8.92
-Giovanna,K.,0.52,2,0.0,0.52,1 horas e 43 minutos,6.71
-Flávio,D.,1.59,1,0.0,1.59,0 horas e 18 minutos,3.79
-Cleriston,C.,1.04,1,0.0,1.04,0 horas e 11 minutos,2.45
-Letícia,E.,0.0,1,0.0,0.0,0 horas e 15 minutos,0.25
+firstname,lastname,pontuacao,total_quilometros,quilometros_peso_1,quilometros_peso_2,quantidade_atividades,total_horas
+Lucas,M.,248.67,37.0,0.0,37.0,4,4 horas e 26 minutos
+Nataniel,P.,199.42,14.93,7.87,7.07,8,1 horas e 41 minutos
+Ana Paula,G.,57.32,12.2,10.2,2.0,3,2 horas e 7 minutos
+Deyse,S.,34.73,4.74,0.0,4.74,3,1 horas e 2 minutos
+Natanael,F.,29.77,5.0,0.0,5.0,3,2 horas e 26 minutos
+Carlos,G.,27.6,5.0,2.0,3.0,3,0 horas e 31 minutos
+Filipe,O.,23.29,10.1,10.1,0.0,2,1 horas e 32 minutos
+Ana Clara,N.,23.05,5.2,0.0,5.2,2,0 horas e 33 minutos
+Everardo,O.,14.39,1.04,0.0,1.04,3,2 horas e 33 minutos
+renato,K.,10.07,2.05,0.0,2.05,2,0 horas e 28 minutos
+marconecosta0872@gmail.com,C.,8.92,4.08,0.0,4.08,1,0 horas e 22 minutos
+Giovanna,K.,6.71,0.52,0.0,0.52,2,1 horas e 43 minutos
+Flávio,D.,3.79,1.59,0.0,1.59,1,0 horas e 18 minutos
+Cleriston,C.,2.45,1.04,0.0,1.04,1,0 horas e 11 minutos
+Letícia,E.,0.25,0.0,0.0,0.0,1,0 horas e 15 minutos
