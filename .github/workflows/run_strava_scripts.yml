@@ -41,6 +41,10 @@ jobs:
         run: |
           python app.py
 
+      - name: Data de início da competição
+        run: |
+          python start_competition.py     
+
       # Executa o script para calcular pontuação
       - name: Rodar o script para calcular o score básico
         run: |

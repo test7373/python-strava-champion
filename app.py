@@ -106,7 +106,7 @@ if ACCESS_TOKEN:
             ])
 
     # Lê o CSV e salva em outro arquivo apenas registros não repetidos
-    csv_file_2 = 'unique_activities.csv'
+    csv_file_2 = 'unique_activities_old.csv'
 
     # Carrega os dados no Pandas
     df = pd.read_csv(csv_file_1)
