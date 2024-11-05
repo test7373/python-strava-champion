@@ -1,4 +1,4 @@
-# Run Strava Scripts
+# Exportar relatórios do Strava Clubs
 
 ## Descrição
 Este repositório contém scripts para interagir com a API do Strava, coletando e processando dados de atividades de um clube. Utilizamos o GitHub Actions para automatizar a execução dos scripts em intervalos regulares e salvar os resultados como artefatos. Este projeto é útil para criar relatórios detalhados sobre as atividades do clube e gerar pontuações para os participantes.
