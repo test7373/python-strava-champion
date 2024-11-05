@@ -40,10 +40,6 @@ jobs:
         run: |
           python start_competition.py     
 
-      # Executa o script para calcular pontuação
-      - name: Rodar o script para calcular o score básico
-        run: |
-          python score.py
 
       # Executa o script para gerar pontuação com detalhes
       - name: Rodar o script para calcular o score mais detalhado
