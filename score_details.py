@@ -11,7 +11,7 @@ def seconds_to_hours_minutes(seconds):
 
 # Função para determinar o fator de pontuação com base no tipo de atividade
 def get_score_factor(activity_type):
-    if activity_type in ["Walk", "Run", "EBikeRide"]:
+    if activity_type in ["Walk", "Run"]:
         return 2
     elif activity_type == "Ride":
         return 1
@@ -28,7 +28,9 @@ participant_scores = (
         total_seconds=("moving_time", "sum"),                                  # Somando moving_time em segundos
         total_kilometers=("distance", lambda x: round(x.sum() / 1000, 2)),     # Convertendo distância para km e arredondando
         activity_count=("moving_time", "count"),                               # Contando o número de atividades
-        total_score_factor=("score_factor", "sum")                             # Somando os fatores de pontuação
+        total_score_factor=("score_factor", "sum"),                            # Somando os fatores de pontuação
+        kilometers_weight_1=("distance", lambda x: round(x[df["score_factor"] == 1].sum() / 1000, 2)),  # Somando quilômetros com peso 1
+        kilometers_weight_2=("distance", lambda x: round(x[df["score_factor"] == 2].sum() / 1000, 2))   # Somando quilômetros com peso 2
     )
     .reset_index()
 )
