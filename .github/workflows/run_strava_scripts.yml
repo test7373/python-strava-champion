@@ -53,6 +53,7 @@ jobs:
           name: csv-files
           path: |
             unique_activities.csv
+            unique_activities_old.csv
             participant_scores.csv
             participant_scores_with_details.csv
             strava_tokens.csv
