@@ -1,4 +1,4 @@
-name: Verificar atividades inválidas
+name: Atualizar e limpar dados
 
 on:
   workflow_dispatch:  
@@ -27,9 +27,9 @@ jobs:
           pip install pandas requests
 
       # Executa o script para gerar pontuação com detalhes
-      - name: Rodar o script para verificar atividades suspeitas
+      - name: Rodar o script para atualizar o club activities
         run: |
-          python verify_activity.py
+          python refresh_data_club_activities.py
 
       # Salva os arquivos CSV gerados como artefatos
       - name: Upload CSV artifacts
@@ -37,7 +37,7 @@ jobs:
         with:
           name: csv-files
           path: |
-            invalid_activities.csv
+            club_activities.csv
       # Adicionar e commitar os arquivos CSV gerados no repositório
       - name: Commit and push CSV files
         run: |
