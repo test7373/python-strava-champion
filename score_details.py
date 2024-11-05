@@ -11,9 +11,9 @@ def seconds_to_hours_minutes(seconds):
 
 # Função para determinar o fator de pontuação com base no tipo de atividade
 def get_score_factor(activity_type):
-    if activity_type in ["Walk", "Run", "EBikeRide"]:
+    if activity_type in ["Walk", "Run"]:
         return 2
-    elif activity_type == "Ride":
+    elif activity_type in ["EBikeRide", "Ride"]:
         return 1
     else:
         return 1  # Caso não seja nenhum dos tipos especificados, utiliza 1 como padrão
