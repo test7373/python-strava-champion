@@ -12,7 +12,7 @@ def seconds_to_hours_minutes(seconds):
 # Função para determinar o fator de pontuação com base no tipo de atividade
 def get_score_factor(activity_type):
     if activity_type in ["Walk", "Run"]:
-        return 2
+        return 3
     elif activity_type in ["Ride", "EBikeRide"]:
         return 1
     else:
@@ -29,7 +29,7 @@ pontuacao_participantes = (
         total_quilometros=("distance", lambda x: round(x.sum() / 1000, 2)),       # Convertendo distância para km e arredondando
         quantidade_atividades=("moving_time", "count"),                         # Contando o número de atividades
         quilometros_peso_1=("distance", lambda x: round(x[df["fator_pontuacao"] == 1].sum() / 1000, 2)),  # Somando quilômetros com peso 1
-        quilometros_peso_2=("distance", lambda x: round(x[df["fator_pontuacao"] == 2].sum() / 1000, 2))   # Somando quilômetros com peso 2
+        quilometros_peso_3=("distance", lambda x: round(x[df["fator_pontuacao"] == 3].sum() / 1000, 2))   # Somando quilômetros com peso 3
     )
     .reset_index()
 )
@@ -38,18 +38,18 @@ pontuacao_participantes = (
 pontuacao_participantes["total_horas"] = pontuacao_participantes["total_segundos"].apply(seconds_to_hours_minutes)
 
 # Calcular a pontuação com base na regra especificada:
-# 1 ponto por hora de qualquer atividade
-# 2 pontos por quilômetro para Walk e Run
+# 3 pontos por hora de qualquer atividade
+# 3 pontos por quilômetro para Walk e Run
 # 1 ponto por quilômetro para Ride
 pontuacao_participantes["pontuacao"] = round(
-    (pontuacao_participantes["total_segundos"] / 3600) +
-    (pontuacao_participantes["quilometros_peso_2"] * 2) +
+    (pontuacao_participantes["total_segundos"] / 3600) * 3 +
+    (pontuacao_participantes["quilometros_peso_3"] * 3) +
     (pontuacao_participantes["quilometros_peso_1"] * 1),
     2
 )
 
 # Reorganizar as colunas para que a pontuação fique ao lado do nome
-colunas_ordenadas = ["firstname", "lastname", "pontuacao", "total_quilometros", "quilometros_peso_1", "quilometros_peso_2", "quantidade_atividades", "total_horas"]
+colunas_ordenadas = ["firstname", "lastname", "pontuacao", "total_quilometros", "quilometros_peso_1", "quilometros_peso_3", "quantidade_atividades", "total_horas"]
 pontuacao_participantes = pontuacao_participantes[colunas_ordenadas]
 
 # Ordenar por pontuação em ordem decrescente
