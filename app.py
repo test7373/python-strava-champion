@@ -3,6 +3,11 @@ import csv
 import os
 from datetime import datetime, timedelta
 import pandas as pd
+from dotenv import load_dotenv
+
+# Carregar variáveis de ambiente do arquivo .env
+if os.getenv('ENV') != 'production':
+    load_dotenv(dotenv_path=".env")
 
 # Configurações da API do Strava
 CLIENT_ID = os.getenv("STRAVA_CLIENT_ID")
@@ -50,6 +55,7 @@ def get_access_token():
         save_refresh_token(new_refresh_token)
         return response_data.get('access_token')
     else:
+        print(CLIENT_ID)
         print("Erro ao obter o access token:", response_data)
         return None
 

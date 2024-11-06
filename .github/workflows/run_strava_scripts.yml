@@ -25,10 +25,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pandas requests
+          pip install python-dotenv
 
       # Executa o script para buscar e salvar atividades do clube
       - name: Rodar o script para buscar os dados no strava 
         env:
+          ENV: production
           ACCESS_TOKEN: ${{ secrets.STRAVA_ACCESS_TOKEN }}
           STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}            
           STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}            
