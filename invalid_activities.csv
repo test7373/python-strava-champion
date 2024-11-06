@@ -1,1 +1,3 @@
-
+firstname,lastname,name,distance,moving_time,elapsed_time,total_elevation_gain,type,sport_type,current_date,validation_issue,pace
+Ana Clara,N.,Afternoon Walk,1.5,0,531,0.0,Walk,Walk,2024-11-05,"Validação 2: Walk com pace fora do intervalo [8, 20]",0.0
+Ana Clara,N.,Evening Run,0.0,43,43,0.0,Run,Run,2024-11-05,"Validação 3: Run com pace fora do intervalo [4, 12]",inf
