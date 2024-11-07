@@ -69,7 +69,7 @@ if ACCESS_TOKEN:
     HEADERS = {'Authorization': f'Bearer {ACCESS_TOKEN}'}
 
     # Busca atividades do clube
-    response = requests.get(API_URL, headers=HEADERS, params={'per_page': 138})
+    response = requests.get(API_URL, headers=HEADERS, params={'per_page': 200})
     activities = response.json()
 
     # Verifica se a resposta é uma lista de atividades
