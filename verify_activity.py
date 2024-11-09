@@ -4,6 +4,16 @@ import pandas as pd
 csv_file = "unique_activities.csv"
 data = pd.read_csv(csv_file)
 
+# Converter moving_time de segundos para horas e minutos
+def convert_moving_time(seconds):
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    return f"{hours}h {minutes}min"
+
+# Converter distance de metros para quilômetros (arredondado para duas casas decimais)
+def convert_distance(distance):
+    return round(distance / 1000, 2)
+
 # Inicializa uma lista para armazenar as linhas que não passam nas validações
 invalid_rows = []
 
@@ -14,21 +24,15 @@ def calculate_pace(moving_time, distance):
     pace = (moving_time / 60) / (distance / 1000)  # Pace em min/km
     return pace
 
-# Validação 1: Verificar se por dia a atividade com o sport_type == 'WeightTraining' tem moving_time > 2h30min
-# weight_training_daily = data[data['sport_type'] == 'WeightTraining'].groupby('current_date')['moving_time'].sum()
-# for date, total_time in weight_training_daily.items():
-#     if total_time > 2.5 * 3600:
-#         excess_hours = (total_time - 2.5 * 3600) / 3600
-#         invalid_rows.extend(data[(data['sport_type'] == 'WeightTraining') & (data['current_date'] == date)]
-#                            .assign(validation_issue='Validação 1: WeightTraining com moving_time diário > 2h30min', excess_hours=excess_hours).to_dict('records'))
-
-# Validação 2: Verificar se nas atividades do type == 'Walk' está tendo um pace maior que 15 ou menor que 8 min/km
+# Validação 2: Verificar se nas atividades do type == 'Walk' está tendo um pace maior que 20 ou menor que 8 min/km
 for index, row in data.iterrows():
     if row['type'] == 'Walk':
         pace = calculate_pace(row['moving_time'], row['distance'])
         if pace > 20 or pace < 8:
             row['validation_issue'] = 'Validação 2: Walk com pace fora do intervalo [8, 20]'
             row['pace'] = pace
+            row['moving_time_converted'] = convert_moving_time(row['moving_time'])
+            row['distance_converted_km'] = convert_distance(row['distance'])
             invalid_rows.append(row)
 
 # Validação 3: Verificar se nas atividades do type == 'Run' está tendo um pace maior que 12 ou menor que 4 min/km
@@ -38,6 +42,8 @@ for index, row in data.iterrows():
         if pace > 12 or pace < 4:
             row['validation_issue'] = 'Validação 3: Run com pace fora do intervalo [4, 12]'
             row['pace'] = pace
+            row['moving_time_converted'] = convert_moving_time(row['moving_time'])
+            row['distance_converted_km'] = convert_distance(row['distance'])
             invalid_rows.append(row)
 
 # Criar um DataFrame com as linhas que não passaram nas validações
