@@ -7,9 +7,9 @@ df = pd.read_csv("unique_activities.csv")
 invalid_activities = pd.read_csv("invalid_activities.csv")
 
 # Filtrar atividades que estão na planilha de atividades inválidas
-# Supondo que a coluna 'name' seja usada para identificar as atividades
-atividades_invalidas = invalid_activities["name"].tolist()
-df = df[~df["name"].isin(atividades_invalidas)]
+# Utilizando as colunas 'firstname', 'lastname', 'name', 'distance', 'moving_time', 'elapsed_time', 'total_elevation_gain', 'type', 'sport_type'
+df = df.merge(invalid_activities, on=['firstname', 'lastname', 'name', 'distance', 'moving_time', 'elapsed_time', 'total_elevation_gain', 'type', 'sport_type'], how='left', indicator=True)
+df = df[df['_merge'] == 'left_only'].drop(columns=['_merge'])
 
 # Função para converter segundos para o formato "X horas e Y minutos"
 def seconds_to_hours_minutes(seconds):
