@@ -22,7 +22,7 @@ def calculate_pace(moving_time, distance):
     if distance == 0:
         return float('inf')  # Retorna um valor infinito caso a distância seja zero
     pace = (moving_time / 60) / (distance / 1000)  # Pace em min/km
-    return pace
+    return round(pace, 2)
 
 # Validação 2: Verificar se nas atividades do type == 'Walk' está tendo um pace maior que 20 ou menor que 8 min/km
 for index, row in data.iterrows():
