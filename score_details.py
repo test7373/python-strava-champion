@@ -3,6 +3,14 @@ import pandas as pd
 # Carregar a planilha unique_activities
 df = pd.read_csv("unique_activities.csv")
 
+# Carregar a planilha de atividades inválidas
+invalid_activities = pd.read_csv("invalid_activities.csv")
+
+# Filtrar atividades que estão na planilha de atividades inválidas
+# Supondo que a coluna 'name' seja usada para identificar as atividades
+atividades_invalidas = invalid_activities["name"].tolist()
+df = df[~df["name"].isin(atividades_invalidas)]
+
 # Função para converter segundos para o formato "X horas e Y minutos"
 def seconds_to_hours_minutes(seconds):
     hours = seconds // 3600
@@ -58,4 +66,4 @@ pontuacao_participantes = pontuacao_participantes.sort_values(by="pontuacao", as
 # Salvar o resultado em um novo CSV
 pontuacao_participantes.to_csv("participant_scores_with_details.csv", index=False)
 
-print("Pontuação dos participantes com horas, quilômetros e quantidade de atividades salva em 'pontuacao_participantes_com_detalhes.csv' com sucesso.")
+print("Pontuação dos participantes com horas, quilômetros e quantidade de atividades salva em 'participant_scores_with_details.csv' com sucesso.")
