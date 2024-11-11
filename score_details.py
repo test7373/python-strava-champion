@@ -4,12 +4,17 @@ import pandas as pd
 df = pd.read_csv("unique_activities.csv")
 
 # Carregar a planilha de atividades inválidas
-invalid_activities = pd.read_csv("invalid_activities.csv")
+try:
+    invalid_activities = pd.read_csv("invalid_activities.csv")
+except pd.errors.EmptyDataError:
+    invalid_activities = pd.DataFrame()
 
-# Filtrar atividades que estão na planilha de atividades inválidas
-# Utilizando as colunas 'firstname', 'lastname', 'name', 'distance', 'moving_time', 'elapsed_time', 'total_elevation_gain', 'type', 'sport_type'
-df = df.merge(invalid_activities, on=['firstname', 'lastname', 'name', 'distance', 'moving_time', 'elapsed_time', 'total_elevation_gain', 'type', 'sport_type'], how='left', indicator=True)
-df = df[df['_merge'] == 'left_only'].drop(columns=['_merge'])
+# Verificar se há registros em invalid_activities
+if not invalid_activities.empty:
+    # Filtrar atividades que estão na planilha de atividades inválidas
+    # Utilizando as colunas 'firstname', 'lastname', 'name', 'distance', 'moving_time', 'elapsed_time', 'total_elevation_gain', 'type', 'sport_type'
+    df = df.merge(invalid_activities, on=['firstname', 'lastname', 'name', 'distance', 'moving_time', 'elapsed_time', 'total_elevation_gain', 'type', 'sport_type'], how='left', indicator=True)
+    df = df[df['_merge'] == 'left_only'].drop(columns=['_merge'])
 
 # Função para converter segundos para o formato "X horas e Y minutos"
 def seconds_to_hours_minutes(seconds):
