@@ -17,6 +17,8 @@ Ana Paula,G.,Caminhada matinal,975.0,1193,1250,9.2,Walk,Walk,2024-11-30,"Valida�
 Everardo,O.,Caminhada,6701.4,2640,2640,0.0,Walk,Walk,2024-12-02,"Validação 2: Walk com pace fora do intervalo [8, 20]",6.57,0h 44min,6.7
 Everardo,O.,Caminhadinha,3862.4,1140,1140,0.0,Walk,Walk,2024-12-03,"Validação 2: Walk com pace fora do intervalo [8, 20]",4.92,0h 19min,3.86
 Ana Paula,G.,Caminhada vespertina,116.9,196,779,0.0,Walk,Walk,2024-12-06,"Validação 2: Walk com pace fora do intervalo [8, 20]",27.94,0h 3min,0.12
+Ana Paula,G.,Caminhada matinal,600.0,997,997,0.0,Walk,Walk,2024-12-08,"Validação 2: Walk com pace fora do intervalo [8, 20]",27.69,0h 16min,0.6
+Ana Paula,G.,Caminhada matinal,600.0,1065,1065,0.0,Walk,Walk,2024-12-08,"Validação 2: Walk com pace fora do intervalo [8, 20]",29.58,0h 17min,0.6
 Filipe,O.,Corrida vespertina,6800.0,923,923,0.0,Run,Run,2024-11-12,"Validação 3: Run com pace fora do intervalo [4, 12]",2.26,0h 15min,6.8
 Lucas,M.,Treino de superiores 💪🏻,0.0,4801,4801,0.0,Run,Run,2024-11-13,"Validação 3: Run com pace fora do intervalo [4, 12]",inf,1h 20min,0.0
 Filipe,O.,Corrida na hora do almoço,20000.0,2561,2561,0.0,Run,Run,2024-11-26,"Validação 3: Run com pace fora do intervalo [4, 12]",2.13,0h 42min,20.0
