@@ -12,7 +12,7 @@ if os.getenv('ENV') != 'production':
 # Configurações da API do Strava
 CLIENT_ID = os.getenv("STRAVA_CLIENT_ID")
 CLIENT_SECRET = os.getenv("STRAVA_CLIENT_SECRET")
-CLUB_ID = '1304613'  # Substitua pelo seu ID do clube
+CLUB_ID = 'tcgym'  # Substitua pelo seu ID do clube
 CSV_FILE = 'strava_tokens.csv'
 
 # Função para salvar o refresh token em um arquivo CSV
