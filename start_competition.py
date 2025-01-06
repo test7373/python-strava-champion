@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime
 
 # Defina a data para filtrar
-filter_date = "2024-11-10"  # Data em formato YYYY-MM-DD
+filter_date = "2025-01-01"  # Data em formato YYYY-MM-DD
 filter_date = datetime.strptime(filter_date, '%Y-%m-%d')
 
 # Ler o arquivo CSV de entrada
