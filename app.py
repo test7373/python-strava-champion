@@ -61,6 +61,7 @@ def get_access_token():
 
 # Obtém o access token
 ACCESS_TOKEN = get_access_token()
+print(ACCESS_TOKEN)
 
 # Caso o access token tenha sido obtido com sucesso
 if ACCESS_TOKEN:
