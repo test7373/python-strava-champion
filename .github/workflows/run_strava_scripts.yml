@@ -31,10 +31,10 @@ jobs:
       - name: Rodar o script para buscar os dados no strava 
         env:
           ENV: production
-          ACCESS_TOKEN: ${{ secrets.STRAVA_ACCESS_TOKEN }}
-          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}            
-          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}            
-          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}            
+          ACCESS_TOKEN: ${{secrets.STRAVA_ACCESS_TOKEN}}
+          STRAVA_CLIENT_ID: ${{secrets.STRAVA_CLIENT_ID}}            
+          STRAVA_CLIENT_SECRET: ${{secrets.STRAVA_CLIENT_SECRET}}            
+          STRAVA_REFRESH_TOKEN: ${{secrets.STRAVA_REFRESH_TOKEN}}            
         run: |
           python app.py
 
@@ -66,6 +66,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add *.csv
           git commit -m "Arquivos atualizados automáticamente pelo github actions"
-          git push  "https://${GITHUB_ACTOR}:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git"
+          git push  "https://${GITHUB_ACTOR}:${{secrets.GH_TOKEN}}@github.com/${{ github.repository }}.git"
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}    
+          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}    
